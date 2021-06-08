@@ -18,7 +18,7 @@ import java.util.Enumeration;
 public class WebLogAspect {
     private Logger logger = Logger.getLogger(getClass());
 
-    @Pointcut("execution(public * com.laoxu.studentmanager.controller..*.*(..))")
+    @Pointcut("execution(public * com.laoxu.modernsky.controller..*.*(..))")
     public void webLog() {
 
     }

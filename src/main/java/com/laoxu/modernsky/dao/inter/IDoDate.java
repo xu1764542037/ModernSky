@@ -14,21 +14,5 @@ public interface IDoDate {
 
     List<AbsSuperObject> select();
 
-    List<AbsSuperObject> selectIdAndPwd(Map<String, Object> cons);
 
-    List<AbsSuperObject> selectId(Map<String, Object> cons);
-
-    List<AbsSuperObject> selectByCondition(Map<String, Object> cons);
-
-
-    List<AbsSuperObject> selectClassName();
-
-    List<AbsSuperObject> selectDepartment();
-
-    List<AbsSuperObject> selectStatus();
-
-
-    int batchDelete(List<String> id);
-
-    int batchAll(Map<String ,Object> cons);
 }
