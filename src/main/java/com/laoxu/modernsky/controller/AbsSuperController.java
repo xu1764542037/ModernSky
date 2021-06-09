@@ -3,11 +3,9 @@ package com.laoxu.modernsky.controller;
 import com.laoxu.modernsky.bll.AbsSuperService;
 import com.laoxu.modernsky.entity.AbsSuperObject;
 import com.laoxu.modernsky.entity.BackReturn;
-import com.laoxu.modernsky.entity.User;
-import com.laoxu.modernsky.util.JSONAndObject;
+import com.laoxu.modernsky.utils.JSONAndObject;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 

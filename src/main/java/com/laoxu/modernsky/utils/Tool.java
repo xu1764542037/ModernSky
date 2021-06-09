@@ -1,4 +1,4 @@
-package com.laoxu.modernsky.util;
+package com.laoxu.modernsky.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

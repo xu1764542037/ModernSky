@@ -1,4 +1,4 @@
-package com.laoxu.modernsky.util;
+package com.laoxu.modernsky.utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
