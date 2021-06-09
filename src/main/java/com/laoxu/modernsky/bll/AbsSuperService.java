@@ -123,7 +123,31 @@ public abstract class AbsSuperService {
         return back;
     }
 
+    /**
+     * 登录
+     * 查找id和密码
+     */
+    public BackReturn login(Map<String,Object> cons){
+        BackReturn back = new BackReturn();//检查参数
+        if (getDao()==null) {
+            back.setCode("000");
+            back.setMessage("数据访问层对象为空");
+            back.setObj(null);
+            return back;
+        }
+        //调用数据访问层查找功能
+        List<AbsSuperObject> select = getDao().login(cons);
+        if (select!=null){
+            back.setCode("200");
+            back.setMessage("查找成功");
 
+        }else {
+            back.setCode("002");
+            back.setMessage("查找失败");
+        }
+        back.setObj(select);
+        return back;
+    }
 
 
 }

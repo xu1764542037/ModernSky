@@ -3,9 +3,11 @@ package com.laoxu.modernsky.controller;
 import com.laoxu.modernsky.bll.AbsSuperService;
 import com.laoxu.modernsky.entity.AbsSuperObject;
 import com.laoxu.modernsky.entity.BackReturn;
+import com.laoxu.modernsky.entity.User;
 import com.laoxu.modernsky.utils.JSONAndObject;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -87,6 +89,25 @@ public abstract class AbsSuperController {
         if (back.getObj()!=null && back.getObj() instanceof List){
             List result = (List) back.getObj();
             if (result.size()>0){
+                back.setObj(result);
+            }else {
+                back.setObj(null);
+            }
+            return back;
+        }else {
+            return back;
+        }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public BackReturn selectIdAndPwd(@RequestBody Map<String,Object> object, HttpServletRequest request, User user) {
+        BackReturn back = getService().login(object);
+        if (back.getObj()!=null && back.getObj() instanceof List){
+            List result = (List) back.getObj();
+            if (result.size()>0){
+                request.getSession().setAttribute("user",user);
                 back.setObj(result);
             }else {
                 back.setObj(null);

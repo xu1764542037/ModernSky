@@ -5,6 +5,72 @@
 
 <mapper namespace="com.laoxu.studentmanager.dao.inter.IUser">
 
+    <sql id="column">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="year != null">
+                year,
+            </if>
+            <if test="classes != null">
+                classes,
+            </if>
+            <if test="createDate != null">
+                createDate,
+            </if>
+        </trim>
+    </sql>
 
+    <sql id="columnValue">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="email != null">
+                #{email},
+            </if>
+            <if test="phone != null">
+                #{phone},
+            </if>
+            <if test="year != null">
+                #{year},
+            </if>
+            <if test="classes != null">
+                #{classes},
+            </if>
+            <if test="createDate != null">
+                #{createDate},
+            </if>
+        </trim>
+    </sql>
+
+    <select id="login" resultType="com.laoxu.studentmanager.entity.User" parameterType="com.laoxu.studentmanager.entity.User">
+        select * from ModernSky.user where id = #{userId} and password = #{userPwd}
+    </select>
 
 </mapper>
