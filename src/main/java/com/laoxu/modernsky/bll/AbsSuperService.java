@@ -4,7 +4,6 @@ import com.laoxu.modernsky.dao.inter.IDoDate;
 import com.laoxu.modernsky.entity.AbsSuperObject;
 import com.laoxu.modernsky.entity.BackReturn;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -149,5 +148,31 @@ public abstract class AbsSuperService {
         return back;
     }
 
+    /**
+     * 查找id
+     * @param cons
+     * @return
+     */
+    public BackReturn selectId(Map<String,Object> cons){
+        BackReturn back = new BackReturn();//检查参数
+        if (getDao()==null) {
+            back.setCode("000");
+            back.setMessage("数据访问层对象为空");
+            back.setObj(null);
+            return back;
+        }
+        //调用数据访问层查找功能
+        List<AbsSuperObject> select = getDao().selectId(cons);
+        if (select!=null){
+            back.setCode("200");
+            back.setMessage("查找成功");
+
+        }else {
+            back.setCode("002");
+            back.setMessage("查找失败");
+        }
+        back.setObj(select);
+        return back;
+    }
 
 }

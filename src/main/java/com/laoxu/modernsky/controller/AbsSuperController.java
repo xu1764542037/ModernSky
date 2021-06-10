@@ -118,5 +118,21 @@ public abstract class AbsSuperController {
         }
     }
 
-  
+    @CrossOrigin
+    @RequestMapping(value = "/selectId", method = RequestMethod.POST)
+    @ResponseBody
+    public BackReturn selectId(@RequestBody Map<String,Object> object) {
+        BackReturn back = getService().selectId(object);
+        if (back.getObj()!=null && back.getObj() instanceof List){
+            List result = (List) back.getObj();
+            if (result.size()>0){
+                back.setObj(result);
+            }else {
+                back.setObj(null);
+            }
+            return back;
+        }else {
+            return back;
+        }
+    }
 }

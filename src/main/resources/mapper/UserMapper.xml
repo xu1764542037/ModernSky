@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.laoxu.studentmanager.dao.inter.IUser">
+<mapper namespace="com.laoxu.modernsky.dao.inter.IUser">
 
     <sql id="column">
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -36,7 +36,6 @@
             </if>
         </trim>
     </sql>
-
     <sql id="columnValue">
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -69,8 +68,20 @@
         </trim>
     </sql>
 
-    <select id="login" resultType="com.laoxu.studentmanager.entity.User" parameterType="com.laoxu.studentmanager.entity.User">
-        select * from ModernSky.user where id = #{userId} and password = #{userPwd}
+    <insert id="add" parameterType="com.laoxu.modernsky.entity.User">
+        insert into ModernSky.user
+        <include refid="column"></include>
+        values
+        <include refid="columnValue"></include>
+
+    </insert>
+
+    <select id="login" resultType="com.laoxu.modernsky.entity.User" parameterType="com.laoxu.modernsky.entity.User">
+        select * from ModernSky.user where id = #{id} and password = #{password}
+    </select>
+
+    <select id="selectId" resultType="com.laoxu.modernsky.entity.User" parameterType="com.laoxu.modernsky.entity.User">
+        select * from ModernSky.user where id = #{id}
     </select>
 
 </mapper>

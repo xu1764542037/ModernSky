@@ -45,13 +45,14 @@ public class User extends AbsSuperObject{
      */
     private Date createDate;
 
-    public Date getCreatDate() {
+
+    public Date getCreateDate() {
         this.createDate=new Date();
         java.sql.Date createDate = new java.sql.Date(this.createDate.getTime());
         return createDate;
     }
 
-    public void setCreatDate(Date creatDate) {
-        this.createDate = creatDate;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

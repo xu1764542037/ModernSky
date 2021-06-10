@@ -16,4 +16,6 @@ public interface IDoDate {
 
     List<AbsSuperObject> login(Map<String, Object> cons);
 
+    List<AbsSuperObject> selectId(Map<String, Object> cons);
+
 }
