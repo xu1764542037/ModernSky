@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.laoxu.modernsky.dao.inter.ITeacher">
+
+    <sql id="column">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="jobNumber != null">
+                jobNumber,
+            </if>
+        </trim>
+    </sql>
+    <sql id="columnValue">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="jobNumber != null">
+                #{jobNumber},
+            </if>
+        </trim>
+    </sql>
+
+
+</mapper>
