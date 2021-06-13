@@ -14,6 +14,7 @@ public class RestResponse<T> {
     public static final Integer FAILURE_CODE = 300;
 
     private Integer code;
+    public String Ecode;
 
     private String msg;
     private T data;
@@ -57,6 +58,10 @@ public class RestResponse<T> {
         this.code = code;
     }
 
+    public void setEcode(String ecode){this.Ecode = ecode;}
+
+    public String getEcode(){return Ecode;}
+
     public String getMsg() {
         return msg;
     }
@@ -73,5 +78,3 @@ public class RestResponse<T> {
         this.data = data;
     }
 }
-
-

@@ -99,15 +99,15 @@ public abstract class AbsSuperController {
         }
     }
 
+
     @CrossOrigin
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/selectActorId", method = RequestMethod.POST)
     @ResponseBody
-    public BackReturn selectIdAndPwd(@RequestBody Map<String,Object> object, HttpServletRequest request, User user) {
-        BackReturn back = getService().login(object);
+    public BackReturn selectActorId(@RequestBody Map<String,Object> object) {
+        BackReturn back = getService().selectActorId(object);
         if (back.getObj()!=null && back.getObj() instanceof List){
             List result = (List) back.getObj();
             if (result.size()>0){
-                request.getSession().setAttribute("user",user);
                 back.setObj(result);
             }else {
                 back.setObj(null);
@@ -119,20 +119,19 @@ public abstract class AbsSuperController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/selectId", method = RequestMethod.POST)
+    @RequestMapping(value = "distinctSelect",method = RequestMethod.POST)
     @ResponseBody
-    public BackReturn selectId(@RequestBody Map<String,Object> object) {
-        BackReturn back = getService().selectId(object);
-        if (back.getObj()!=null && back.getObj() instanceof List){
-            List result = (List) back.getObj();
-            if (result.size()>0){
-                back.setObj(result);
-            }else {
-                back.setObj(null);
-            }
-            return back;
-        }else {
+    public BackReturn distinctSelect(@RequestBody Map<String,Object> params){
+        BackReturn back=new BackReturn();
+        try{
+            return getService().distinctSelect(params);
+        }catch (Exception ex){
+            back.setCode("-1");
+            back.setMessage("系统异常："+ex.getMessage());
+            back.setObj(null);
             return back;
         }
     }
+
+
 }

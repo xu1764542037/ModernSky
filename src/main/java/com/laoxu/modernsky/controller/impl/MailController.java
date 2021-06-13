@@ -2,6 +2,7 @@ package com.laoxu.modernsky.controller.impl;
 
 import com.laoxu.modernsky.bll.impl.MailService;
 import com.laoxu.modernsky.entity.User;
+import com.laoxu.modernsky.entity.UsersBo;
 import com.laoxu.modernsky.utils.RestResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Random;
 
 
-@CrossOrigin
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/mail")
 public class MailController {
     @Autowired
     private MailService mailService;
 
     @RequestMapping(value = "/getCheckCode", method = RequestMethod.POST)
-    public RestResponse<String> getCheckCode(@RequestBody User usersBo){
+    public RestResponse<String> getCheckCode(@RequestBody UsersBo usersBo){
         log.info("进入方法getCheckCode:"+usersBo.toString());
         RestResponse restResponse = new RestResponse();
         String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);

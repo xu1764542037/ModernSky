@@ -122,11 +122,11 @@ public abstract class AbsSuperService {
         return back;
     }
 
+
     /**
-     * 登录
-     * 查找id和密码
+     * 查找权限名字对应的id
      */
-    public BackReturn login(Map<String,Object> cons){
+    public BackReturn selectActorId(Map<String,Object> cons){
         BackReturn back = new BackReturn();//检查参数
         if (getDao()==null) {
             back.setCode("000");
@@ -135,7 +135,7 @@ public abstract class AbsSuperService {
             return back;
         }
         //调用数据访问层查找功能
-        List<AbsSuperObject> select = getDao().login(cons);
+        List<AbsSuperObject> select = getDao().selectActorId(cons);
         if (select!=null){
             back.setCode("200");
             back.setMessage("查找成功");
@@ -149,30 +149,28 @@ public abstract class AbsSuperService {
     }
 
     /**
-     * 查找id
+     * 查找需要的行数
      * @param cons
      * @return
      */
-    public BackReturn selectId(Map<String,Object> cons){
-        BackReturn back = new BackReturn();//检查参数
+    public BackReturn distinctSelect(Map<String,Object> cons){
+        BackReturn back=new BackReturn();
         if (getDao()==null) {
             back.setCode("000");
-            back.setMessage("数据访问层对象为空");
+            back.setMessage("数据访问层对象为空！");
             back.setObj(null);
             return back;
         }
         //调用数据访问层查找功能
-        List<AbsSuperObject> select = getDao().selectId(cons);
-        if (select!=null){
+        List<AbsSuperObject> result=getDao().distinctSelect(cons);
+        if (result!=null && result.size()>0){
             back.setCode("200");
-            back.setMessage("查找成功");
-
-        }else {
+            back.setMessage("已经查到符合您条件的数据！");
+        }else{
             back.setCode("002");
-            back.setMessage("查找失败");
+            back.setMessage("系统没有查询到符合您要求的数据！");
         }
-        back.setObj(select);
+        back.setObj(result);
         return back;
     }
-
 }

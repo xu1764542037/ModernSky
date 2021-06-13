@@ -32,5 +32,18 @@
         </trim>
     </sql>
 
+    <insert id="add" parameterType="com.laoxu.modernsky.entity.Teacher">
+        insert into ModernSky.teacher
+        <include refid="column"></include>
+        values
+        <include refid="columnValue"></include>
+    </insert>
 
+    <select id="select" parameterType="com.laoxu.modernsky.entity.Teacher">
+        select * from ModernSky.teacher
+    </select>
+
+    <select id="selectId" resultType="com.laoxu.modernsky.entity.Student" parameterType="com.laoxu.modernsky.entity.Teacher">
+        select * from ModernSky.teacher where id = #{id}
+    </select>
 </mapper>

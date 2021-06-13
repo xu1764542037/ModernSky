@@ -33,14 +33,6 @@ public class User extends AbsSuperObject{
      */
     private String phone;
     /**
-     * 用户年级
-     */
-    private String year;
-    /**
-     * 用户班级
-     */
-    private String classes;
-    /**
      * 用户创建时间
      */
     private Date createDate;

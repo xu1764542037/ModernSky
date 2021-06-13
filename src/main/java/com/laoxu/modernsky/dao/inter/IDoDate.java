@@ -14,8 +14,9 @@ public interface IDoDate {
     List<AbsSuperObject> select();
 
 
-    List<AbsSuperObject> login(Map<String, Object> cons);
 
-    List<AbsSuperObject> selectId(Map<String, Object> cons);
+    List<AbsSuperObject> selectActorId(Map<String, Object> cons);
+
+    List<AbsSuperObject> distinctSelect(Map<String,Object> cons);
 
 }

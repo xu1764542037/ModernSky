@@ -16,17 +16,17 @@
             <if test="number != null">
                 number,
             </if>
-            <if test="className != null">
-                className,
-            </if>
-            <if test="year != null">
-                year,
-            </if>
             <if test="branch != null">
                 branch,
             </if>
             <if test="major != null">
                 major,
+            </if>
+            <if test="className != null">
+                className,
+            </if>
+            <if test="year != null">
+                year,
             </if>
         </trim>
     </sql>
@@ -41,20 +41,33 @@
             <if test="number != null">
                 #{number},
             </if>
-            <if test="className != null">
-                #{className},
-            </if>
-            <if test="year != null">
-                #{year},
-            </if>
             <if test="branch != null">
                 #{branch},
             </if>
             <if test="major != null">
                 #{major},
             </if>
+            <if test="className != null">
+                #{className},
+            </if>
+            <if test="year != null">
+                #{year},
+            </if>
         </trim>
     </sql>
 
+    <insert id="add" parameterType="com.laoxu.modernsky.entity.Student">
+        insert into ModernSky.student
+        <include refid="column"></include>
+        values
+        <include refid="columnValue"></include>
+    </insert>
 
+    <select id="select" parameterType="com.laoxu.modernsky.entity.Student">
+        select * from ModernSky.student
+    </select>
+
+    <select id="selectId" resultType="com.laoxu.modernsky.entity.Student" parameterType="com.laoxu.modernsky.entity.Student">
+        select * from ModernSky.student where id = #{id}
+    </select>
 </mapper>

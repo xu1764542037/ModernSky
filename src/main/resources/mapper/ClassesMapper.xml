@@ -44,5 +44,43 @@
         </trim>
     </sql>
 
+    <sql id="condition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="id!=null">
+                    id=#{id} and
+                </if>
+                <if test="branch!=null">
+                    branch like '%${branch}%' and
+                </if>
+                <if test="major!=null">
+                    major like '%${major}%' and
+                </if>
+                <if test="className!=null">
+                    className like '%${className}%' and
+                </if>
+                <if test="year!=null">
+                    year = #{year} and
+                </if>
+            </trim>
 
+        </where>
+    </sql>
+    <sql id="displayColumn">
+        <choose>
+            <when test="column!=null">
+                ${column}
+            </when>
+            <when test="column==null">
+                *
+            </when>
+        </choose>
+    </sql>
+
+    <select id="distinctSelect" resultType="com.laoxu.modernsky.entity.Classes">
+        select
+        distinct <include refid="displayColumn"></include>
+         from class
+        <include refid="condition"></include>
+    </select>
 </mapper>

@@ -25,12 +25,6 @@
             <if test="phone != null">
                 phone,
             </if>
-            <if test="year != null">
-                year,
-            </if>
-            <if test="classes != null">
-                classes,
-            </if>
             <if test="createDate != null">
                 createDate,
             </if>
@@ -56,16 +50,38 @@
             <if test="phone != null">
                 #{phone},
             </if>
-            <if test="year != null">
-                #{year},
-            </if>
-            <if test="classes != null">
-                #{classes},
-            </if>
             <if test="createDate != null">
                 #{createDate},
             </if>
         </trim>
+    </sql>
+
+    <sql id="condition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="id!=null">
+                    id = #{id} and
+                </if>
+                <if test="password!=null">
+                    password = #{password} and
+                </if>
+                <if test="name!=null">
+                    name like '%${name}%' and
+                </if>
+                <if test="sex!=null">
+                    sex = #{sex} and
+                </if>
+                <if test="email!=null">
+                    email = #{email} and
+                </if>
+                <if test="phone!=null">
+                    phone = #{phone} and
+                </if>
+                <if test="createDate!=null">
+                    createDate = #{createDate} and
+                </if>
+            </trim>
+        </where>
     </sql>
 
     <insert id="add" parameterType="com.laoxu.modernsky.entity.User">
@@ -76,12 +92,46 @@
 
     </insert>
 
+    <insert id="setActor">
+        insert into userAndActor (user_id,actor_id,createDate)
+        values
+            (#{user.id},#{actor.id},now());
+    </insert>
+
     <select id="login" resultType="com.laoxu.modernsky.entity.User" parameterType="com.laoxu.modernsky.entity.User">
         select * from ModernSky.user where id = #{id} and password = #{password}
     </select>
 
-    <select id="selectId" resultType="com.laoxu.modernsky.entity.User" parameterType="com.laoxu.modernsky.entity.User">
-        select * from ModernSky.user where id = #{id}
+    <select id="select" resultType="com.laoxu.modernsky.entity.User" parameterType="com.laoxu.modernsky.entity.User">
+        select * from ModernSky.user
+        <include refid="condition"/>
     </select>
+
+    <select id="selectActorId" resultType="com.laoxu.modernsky.entity.User" parameterType="com.laoxu.modernsky.entity.User">
+        select * from ModernSky.actor where name = #{name}
+    </select>
+    
+    <update id="update" parameterType="com.laoxu.modernsky.entity.User">
+        update user set
+        <trim suffixOverrides=",">
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
 
 </mapper>
