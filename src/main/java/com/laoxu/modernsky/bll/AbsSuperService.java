@@ -100,7 +100,7 @@ public abstract class AbsSuperService {
     /**
      * 查找
      */
-    public BackReturn select(){
+    public BackReturn select(Map<String,Object> cons){
         BackReturn back = new BackReturn();//检查参数
         if (getDao()==null) {
             back.setCode("000");
@@ -109,7 +109,7 @@ public abstract class AbsSuperService {
             return back;
         }
         //调用数据访问层查找功能
-        List<AbsSuperObject> select = getDao().select();
+        List<AbsSuperObject> select = getDao().select(cons);
         if (select!=null){
             back.setCode("200");
             back.setMessage("查找成功");

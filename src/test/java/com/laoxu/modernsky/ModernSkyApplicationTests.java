@@ -2,9 +2,11 @@ package com.laoxu.modernsky;
 
 import com.laoxu.modernsky.dao.inter.IClasses;
 import com.laoxu.modernsky.dao.inter.IDoDate;
+import com.laoxu.modernsky.dao.inter.IStudent;
 import com.laoxu.modernsky.dao.inter.IUser;
 import com.laoxu.modernsky.entity.Actor;
 import com.laoxu.modernsky.entity.Classes;
+import com.laoxu.modernsky.entity.Student;
 import com.laoxu.modernsky.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,16 @@ class ModernSkyApplicationTests {
     private Classes classes;
 
     @Autowired
+    private Student student;
+
+    @Autowired
     private IUser iUser;
 
     @Autowired
     private IClasses iClasses;
+
+    @Autowired
+    private IStudent iStudent;
 
 
     @Test
@@ -57,5 +65,12 @@ class ModernSkyApplicationTests {
         map.put("column","className");
         map.put("major","软件技术");
         System.out.println(iClasses.distinctSelect(map));
+    }
+
+    @Test
+    void test4() {
+        Map<String,Object> map = new HashMap<>();
+        map.put("id","xu123456");
+        System.out.println(iStudent.select(map));
     }
 }

@@ -84,8 +84,8 @@ public abstract class AbsSuperController {
     @CrossOrigin
     @RequestMapping(value = "/select", method = RequestMethod.POST)
     @ResponseBody
-    public BackReturn select() {
-        BackReturn back = getService().select();
+    public BackReturn select(@RequestBody Map<String,Object> object) {
+        BackReturn back = getService().select(object);
         if (back.getObj()!=null && back.getObj() instanceof List){
             List result = (List) back.getObj();
             if (result.size()>0){

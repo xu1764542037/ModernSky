@@ -104,7 +104,7 @@
 
     <select id="select" resultType="com.laoxu.modernsky.entity.User" parameterType="com.laoxu.modernsky.entity.User">
         select * from ModernSky.user
-        <include refid="condition"/>
+        <include refid="condition"></include>
     </select>
 
     <select id="selectActorId" resultType="com.laoxu.modernsky.entity.User" parameterType="com.laoxu.modernsky.entity.User">

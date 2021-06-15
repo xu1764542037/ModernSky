@@ -56,6 +56,34 @@
         </trim>
     </sql>
 
+    <sql id="condition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="id!=null">
+                    id = #{id} and
+                </if>
+                <if test="name!=null">
+                    name like '%${name}%' and
+                </if>
+                <if test="number!=null">
+                    number = #{number} and
+                </if>
+                <if test="branch!=null">
+                    branch = #{branch} and
+                </if>
+                <if test="major!=null">
+                    major = #{major} and
+                </if>
+                <if test="className!=null">
+                    className = #{className} and
+                </if>
+                <if test="year!=null">
+                    year = #{year} and
+                </if>
+            </trim>
+        </where>
+    </sql>
+
     <insert id="add" parameterType="com.laoxu.modernsky.entity.Student">
         insert into ModernSky.student
         <include refid="column"></include>
@@ -63,8 +91,9 @@
         <include refid="columnValue"></include>
     </insert>
 
-    <select id="select" parameterType="com.laoxu.modernsky.entity.Student">
+    <select id="select" resultType="com.laoxu.modernsky.entity.Student" parameterType="com.laoxu.modernsky.entity.Student">
         select * from ModernSky.student
+        <include refid="condition"></include>
     </select>
 
     <select id="selectId" resultType="com.laoxu.modernsky.entity.Student" parameterType="com.laoxu.modernsky.entity.Student">

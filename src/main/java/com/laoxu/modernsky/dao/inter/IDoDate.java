@@ -11,7 +11,7 @@ public interface IDoDate {
     int add(AbsSuperObject obj);
     int update(AbsSuperObject obj);
     int delete(AbsSuperObject obj);
-    List<AbsSuperObject> select();
+    List<AbsSuperObject> select(Map<String, Object> cons);
 
 
 
