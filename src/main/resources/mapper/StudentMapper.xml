@@ -99,4 +99,29 @@
     <select id="selectId" resultType="com.laoxu.modernsky.entity.Student" parameterType="com.laoxu.modernsky.entity.Student">
         select * from ModernSky.student where id = #{id}
     </select>
+
+    <update id="update" parameterType="com.laoxu.modernsky.entity.Student">
+        update student set
+        <trim suffixOverrides=",">
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="number != null">
+                number = #{number},
+            </if>
+            <if test="branch != null">
+                branch = #{branch},
+            </if>
+            <if test="major != null">
+                major = #{major},
+            </if>
+            <if test="className != null">
+                className = #{className},
+            </if>
+            <if test="year != null">
+                year = #{year},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
 </mapper>

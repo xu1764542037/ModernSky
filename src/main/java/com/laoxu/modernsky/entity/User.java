@@ -37,6 +37,11 @@ public class User extends AbsSuperObject{
      */
     private Date createDate;
 
+    /**
+     * 个性签名
+     * @return
+     */
+    private String autograph;
 
     public Date getCreateDate() {
         this.createDate=new Date();

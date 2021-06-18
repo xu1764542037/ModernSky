@@ -39,5 +39,58 @@
         </trim>
     </sql>
 
+    <sql id="condition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="id!=null">
+                    id = #{id} and
+                </if>
+                <if test="name!=null">
+                    name like '%${name}%' and
+                </if>
+                <if test="people!=null">
+                    people = #{people} and
+                </if>
+                <if test="title!=null">
+                    title = #{title} and
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+
+    <insert id="add" parameterType="com.laoxu.modernsky.entity.Island">
+        insert into ModernSky.island
+        <include refid="column"></include>
+        values
+        <include refid="columnValue"></include>
+    </insert>
+
+    <select id="select" resultType="com.laoxu.modernsky.entity.Island" parameterType="com.laoxu.modernsky.entity.Island">
+        select * from ModernSky.island
+        <include refid="condition"></include>
+    </select>
+
+    <delete id="delete" parameterType="com.laoxu.modernsky.entity.Island">
+        delete from island
+        <include refid="condition"></include>
+    </delete>
+
+    <update id="update" parameterType="com.laoxu.modernsky.entity.Island">
+        update island set
+        <trim suffixOverrides=",">
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="people != null">
+                people = #{people},
+            </if>
+            <if test="email != null">
+                title = #{title},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
 
 </mapper>

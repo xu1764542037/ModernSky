@@ -28,6 +28,9 @@
             <if test="createDate != null">
                 createDate,
             </if>
+            <if test="autograph != null">
+                autograph,
+            </if>
         </trim>
     </sql>
     <sql id="columnValue">
@@ -52,6 +55,9 @@
             </if>
             <if test="createDate != null">
                 #{createDate},
+            </if>
+            <if test="autograph != null">
+                #{autograph},
             </if>
         </trim>
     </sql>
@@ -79,6 +85,9 @@
                 </if>
                 <if test="createDate!=null">
                     createDate = #{createDate} and
+                </if>
+                <if test="autograph!=null">
+                    autograph = #{autograph} and
                 </if>
             </trim>
         </where>
@@ -128,6 +137,9 @@
             </if>
             <if test="phone != null">
                 phone = #{phone},
+            </if>
+            <if test="autograph != null">
+                autograph = #{autograph},
             </if>
         </trim>
         where id = #{id}
