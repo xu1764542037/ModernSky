@@ -76,4 +76,8 @@
         </trim>
         where id = #{id}
     </update>
+
+    <delete id="delete" parameterType="com.laoxu.modernsky.entity.Teacher">
+        delete from teacher where id = #{id}
+    </delete>
 </mapper>

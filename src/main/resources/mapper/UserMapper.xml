@@ -115,10 +115,6 @@
         select * from ModernSky.user
         <include refid="condition"></include>
     </select>
-
-    <select id="selectActorId" resultType="com.laoxu.modernsky.entity.User" parameterType="com.laoxu.modernsky.entity.User">
-        select * from ModernSky.actor where name = #{name}
-    </select>
     
     <update id="update" parameterType="com.laoxu.modernsky.entity.User">
         update user set
@@ -145,5 +141,8 @@
         where id = #{id}
     </update>
 
+    <delete id="delete" parameterType="com.laoxu.modernsky.entity.User">
+        delete from user where id = #{id}
+    </delete>
 
 </mapper>

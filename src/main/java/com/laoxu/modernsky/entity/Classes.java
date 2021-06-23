@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 public class Classes extends AbsSuperObject {
-    private String id;
+    private int id;
     private String branch;
     private String major;
     private String className;
-    private String year;
+    private int year;
 }

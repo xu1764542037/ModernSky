@@ -51,13 +51,13 @@
                     id=#{id} and
                 </if>
                 <if test="branch!=null">
-                    branch like '%${branch}%' and
+                    branch = #{branch} and
                 </if>
                 <if test="major!=null">
-                    major like '%${major}%' and
+                    major = #{major} and
                 </if>
                 <if test="className!=null">
-                    className like '%${className}%' and
+                    className = #{className} and
                 </if>
                 <if test="year!=null">
                     year = #{year} and
@@ -80,7 +80,53 @@
     <select id="distinctSelect" resultType="com.laoxu.modernsky.entity.Classes">
         select
         distinct <include refid="displayColumn"></include>
-         from class
+         from ModernSky.class
         <include refid="condition"></include>
     </select>
+
+    <select id="select" resultType="com.laoxu.modernsky.entity.Classes">
+        select * from class
+        <include refid="condition"></include>
+    </select>
+
+    <select id="findByPage" parameterType="java.util.Map" resultType="java.util.Map">
+        select
+        <include refid="displayColumn"></include>
+        from ModernSky.class <include refid="condition"></include>
+        limit #{start},#{rowAccount}
+    </select>
+
+    <select id="rowsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) count from ModernSky.class <include refid="condition"></include>
+    </select>
+
+    <insert id="add" parameterType="com.laoxu.modernsky.entity.Classes" >
+        insert into ModernSky.class
+        <include refid="column"></include>
+        values
+        <include refid="columnValue"></include>
+    </insert>
+
+    <update id="update" parameterType="com.laoxu.modernsky.entity.Classes">
+        update ModernSky.class set
+        <trim suffixOverrides=",">
+            <if test="branch != null">
+                branch = #{branch},
+            </if>
+            <if test="major != null">
+                major = #{major},
+            </if>
+            <if test="className != null">
+                className = #{className},
+            </if>
+            <if test="year != null">
+                year = #{year},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="com.laoxu.modernsky.entity.Classes">
+        delete from class where id = #{id}
+    </delete>
 </mapper>

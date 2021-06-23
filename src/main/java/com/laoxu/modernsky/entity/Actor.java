@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class Actor {
+public class Actor extends AbsSuperObject{
     private String id;
     private String name;
 }

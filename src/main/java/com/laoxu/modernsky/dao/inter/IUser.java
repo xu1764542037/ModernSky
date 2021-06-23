@@ -15,5 +15,4 @@ public interface IUser extends IDoDate{
      * @return
      */
     int setActor(User user, Actor actor);
-
 }

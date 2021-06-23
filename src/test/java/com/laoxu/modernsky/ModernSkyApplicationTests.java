@@ -1,9 +1,6 @@
 package com.laoxu.modernsky;
 
-import com.laoxu.modernsky.dao.inter.IClasses;
-import com.laoxu.modernsky.dao.inter.IDoDate;
-import com.laoxu.modernsky.dao.inter.IStudent;
-import com.laoxu.modernsky.dao.inter.IUser;
+import com.laoxu.modernsky.dao.inter.*;
 import com.laoxu.modernsky.entity.Actor;
 import com.laoxu.modernsky.entity.Classes;
 import com.laoxu.modernsky.entity.Student;
@@ -12,7 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
@@ -30,6 +29,7 @@ class ModernSkyApplicationTests {
     @Autowired
     private Student student;
 
+
     @Autowired
     private IUser iUser;
 
@@ -39,6 +39,8 @@ class ModernSkyApplicationTests {
     @Autowired
     private IStudent iStudent;
 
+    @Autowired
+    private IActor iActor;
 
     @Test
     void contextLoads() {
@@ -48,15 +50,14 @@ class ModernSkyApplicationTests {
     @Test
     void test1() {
         user.setId("xu123456");
-        actor.setId("1");
+        actor.setId("3");
         iUser.setActor(user,actor);
     }
 
     @Test
     void test2() {
-        Map<String,Object> map = new HashMap<>();
-        map.put("name","老师");
-        System.out.println(iUser.selectActorId(map));
+        user.setId("xu1764542037");
+        System.out.println(iActor.selectAId(user));
     }
 
     @Test
@@ -72,5 +73,21 @@ class ModernSkyApplicationTests {
         Map<String,Object> map = new HashMap<>();
         map.put("id","xu123456");
         System.out.println(iStudent.select(map));
+    }
+
+    @Test
+    void test5() {
+        Map<String,Object> map = new HashMap<>();
+        map.put("name","管理员");
+        System.out.println(iActor.select(map));
+    }
+
+    @Test
+    void test6() {
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        System.out.println(iActor.batchSelectActor(list));
     }
 }

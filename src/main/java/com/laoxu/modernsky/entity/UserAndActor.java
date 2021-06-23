@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 public class UserAndActor {
-    private User user;
-    private Actor actor;
+    private User  user_id;
+    private Actor actor_id;
 }

@@ -8,39 +8,15 @@ import java.util.Date;
 @Component
 @Data
 public class User extends AbsSuperObject{
-    /**
-     * 用户账号
-     */
+
     private String id;
-    /**
-     * 用户密码
-     */
     private String password;
-    /**
-     * 用户名
-     */
     private String name;
-    /**
-     * 用户性别
-     */
     private String sex;
-    /**
-     * 用户邮箱
-     */
     private String email;
-    /**
-     * 用户手机号
-     */
     private String phone;
-    /**
-     * 用户创建时间
-     */
     private Date createDate;
 
-    /**
-     * 个性签名
-     * @return
-     */
     private String autograph;
 
     public Date getCreateDate() {

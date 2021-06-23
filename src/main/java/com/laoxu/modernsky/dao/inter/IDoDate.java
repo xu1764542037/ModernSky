@@ -19,4 +19,10 @@ public interface IDoDate {
 
     List<AbsSuperObject> distinctSelect(Map<String,Object> cons);
 
+    //分页查找
+    List<Map<String,Object>> findByPage(Map<String,Object> cons);
+
+    //查找符合条件的记录总行数
+    int rowsCount(Map<String,Object> cons);
+
 }

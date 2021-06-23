@@ -133,5 +133,25 @@ public abstract class AbsSuperController {
         }
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "findByPage",method = RequestMethod.POST)
+    @ResponseBody
+    public BackReturn findByPage(@RequestBody Map<String,Object> params){
+        BackReturn back=new BackReturn();
+        //获取页码
+        int pageIndex=params.get("page")==null?0:Integer.parseInt(params.get("page").toString());
+        //获取每页显示的行数
+        int rowsCount=params.get("rowAccount")==null?2:Integer.parseInt(params.get("rowAccount").toString());
+
+        try{
+            return getService().findByPage(params,pageIndex,rowsCount);
+        }catch (Exception ex){
+            back.setCode("-1");
+            back.setMessage("系统异常："+ex.getMessage());
+            back.setObj(null);
+            return back;
+        }
+    }
+
 
 }

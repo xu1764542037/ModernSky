@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.laoxu.modernsky.dao.inter.IActor">
+    <sql id="column">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+        </trim>
+    </sql>
+    <sql id="columnValue">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+        </trim>
+    </sql>
+    <sql id="condition">
+        <where>
+            <trim suffixOverrides="and">
+                <if test="id!=null">
+                    id = #{id} and
+                </if>
+                <if test="name!=null">
+                    name like '%${name}%' and
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+
+    <select id="select" resultType="com.laoxu.modernsky.entity.Actor" parameterType="com.laoxu.modernsky.entity.Actor">
+        select * from ModernSky.actor
+        <include refid="condition"></include>
+    </select>
+
+    <select id="selectAId" resultType="java.util.Map" parameterType="com.laoxu.modernsky.entity.User">
+        select actor_id from ModernSky.userAndActor where user_id = #{id}
+    </select>
+
+    
+    <select id="batchSelectActor" parameterType="java.util.List" resultType="com.laoxu.modernsky.entity.Actor">
+        select * from ModernSky.actor where id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+    <delete id="deleteActor" parameterType="com.laoxu.modernsky.entity.User" >
+        delete from userAndActor where id = #{id}
+    </delete>
+</mapper>
