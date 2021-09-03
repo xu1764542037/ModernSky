@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class Island extends AbsSuperObject {
     private String id;
     private String name;
+    private String type;
     private String people;
     private String title;
 }

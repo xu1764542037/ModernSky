@@ -13,6 +13,9 @@
             <if test="name != null">
                 name,
             </if>
+            <if test="type != null">
+                type,
+            </if>
             <if test="people != null">
                 people,
             </if>
@@ -29,6 +32,9 @@
             <if test="name != null">
                 #{name},
             </if>
+            <if test="type != null">
+                #{type},
+            </if>
             <if test="people != null">
                 #{people},
             </if>
@@ -42,20 +48,34 @@
     <sql id="condition">
         <where>
             <trim suffixOverrides="and">
-                <if test="id!=null">
+                <if test="id != null">
                     id = #{id} and
                 </if>
-                <if test="name!=null">
+                <if test="name != null">
                     name like '%${name}%' and
                 </if>
-                <if test="people!=null">
+                <if test="type !=null">
+                    type = #{type} and
+                </if>
+                <if test="people != null">
                     people = #{people} and
                 </if>
-                <if test="title!=null">
+                <if test="title != null">
                     title = #{title} and
                 </if>
             </trim>
         </where>
+    </sql>
+
+    <sql id="displayColumn">
+        <choose>
+            <when test="column!=null">
+                ${column}
+            </when>
+            <when test="column==null">
+                *
+            </when>
+        </choose>
     </sql>
 
 
@@ -71,6 +91,13 @@
         <include refid="condition"></include>
     </select>
 
+    <select id="distinctSelect" resultType="com.laoxu.modernsky.entity.Island">
+        select
+        distinct <include refid="displayColumn"></include>
+        from ModernSky.island
+        <include refid="condition"></include>
+    </select>
+
     <delete id="delete" parameterType="com.laoxu.modernsky.entity.Island">
         delete from island
         <include refid="condition"></include>
@@ -81,6 +108,9 @@
         <trim suffixOverrides=",">
             <if test="name != null">
                 name = #{name},
+            </if>
+            <if test="type != null">
+                type = #{type},
             </if>
             <if test="people != null">
                 people = #{people},

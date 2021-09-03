@@ -78,7 +78,6 @@ public class ActorServiceImpl extends AbsSuperService implements com.laoxu.moder
 
     @Override
     public BackReturn batchSelectActor(String ids) {
-
         BackReturn back = new BackReturn();
         if (back == null) {
             back.setCode("000");
@@ -93,7 +92,6 @@ public class ActorServiceImpl extends AbsSuperService implements com.laoxu.moder
         for (int i=1; i<= idNum; i++){
             array.add(idList[i]);
         }
-
         List<Object> result = dao.batchSelectActor(array);
         if (result != null){
             back.setCode("200");
@@ -105,7 +103,5 @@ public class ActorServiceImpl extends AbsSuperService implements com.laoxu.moder
         back.setObj(result);
         return back;
     }
-
-
 }
 
