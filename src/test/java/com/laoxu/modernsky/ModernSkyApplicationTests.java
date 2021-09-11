@@ -1,10 +1,7 @@
 package com.laoxu.modernsky;
 
 import com.laoxu.modernsky.dao.inter.*;
-import com.laoxu.modernsky.entity.Actor;
-import com.laoxu.modernsky.entity.Classes;
-import com.laoxu.modernsky.entity.Student;
-import com.laoxu.modernsky.entity.User;
+import com.laoxu.modernsky.entity.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +26,9 @@ class ModernSkyApplicationTests {
     @Autowired
     private Student student;
 
+    @Autowired
+    private Island island;
+
 
     @Autowired
     private IUser iUser;
@@ -41,6 +41,9 @@ class ModernSkyApplicationTests {
 
     @Autowired
     private IActor iActor;
+
+    @Autowired
+    private IIsland iIsland;
 
     @Test
     void contextLoads() {
@@ -89,5 +92,27 @@ class ModernSkyApplicationTests {
         list.add("2");
         list.add("3");
         System.out.println(iActor.batchSelectActor(list));
+    }
+
+    @Test
+    void test7() {
+        user.setId("admin");
+        System.out.println(iIsland.selectIId(user));
+
+    }
+
+    @Test
+    void test8() {
+        user.setId("admin");
+        island.setId("11");
+        System.out.println(iIsland.joinIsland(user,island));
+    }
+
+    @Test
+    void test9() {
+        user.setId("admin");
+        island.setId("11");
+        System.out.println(iIsland.exitIsland(user,island));
+
     }
 }

@@ -80,10 +80,6 @@ public class ActorController extends AbsSuperController implements IActor {
             back.setMessage("查询失败");
             back.setObj(null);
         }
-
         return back;
-
-
-
     }
 }

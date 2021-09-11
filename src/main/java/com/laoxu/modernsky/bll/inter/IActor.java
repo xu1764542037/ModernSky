@@ -11,6 +11,5 @@ public interface IActor {
 
     BackReturn deleteActor(Map<String,Object> cons);
 
-
     BackReturn batchSelectActor(String ids);
 }

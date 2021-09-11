@@ -86,9 +86,28 @@
         <include refid="columnValue"></include>
     </insert>
 
+    <insert id="joinIsland">
+        insert into userAndIsland (u_id,i_id)
+        values
+            (#{user.id},#{island.id});
+    </insert>
+
+
+
     <select id="select" resultType="com.laoxu.modernsky.entity.Island" parameterType="com.laoxu.modernsky.entity.Island">
         select * from ModernSky.island
         <include refid="condition"></include>
+    </select>
+
+    <select id="selectIId" parameterType="com.laoxu.modernsky.entity.User" resultType="java.util.Map">
+        select i_id from userAndIsland where u_id = #{id}
+    </select>
+
+    <select id="batchSelectIsland" parameterType="java.util.List" resultType="com.laoxu.modernsky.entity.Island">
+        select * from ModernSky.island where id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </select>
 
     <select id="distinctSelect" resultType="com.laoxu.modernsky.entity.Island">
@@ -101,6 +120,10 @@
     <delete id="delete" parameterType="com.laoxu.modernsky.entity.Island">
         delete from island
         <include refid="condition"></include>
+    </delete>
+
+    <delete id="exitIsland">
+        delete from userAndIsland where u_id = #{user.id} and i_id = #{island.id}
     </delete>
 
     <update id="update" parameterType="com.laoxu.modernsky.entity.Island">

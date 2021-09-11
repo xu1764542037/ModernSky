@@ -38,7 +38,6 @@ public class UserController extends AbsSuperController implements IUser {
     @Override
     @RequestMapping(value = "setActor", method = RequestMethod.POST)
     public BackReturn setActor(@RequestBody Map<String,Object> object) {
-        System.out.println(object);
         user.setId(object.get("user").toString());
         actor.setId(object.get("actor").toString());
        return  bll.setActor(user,actor);
